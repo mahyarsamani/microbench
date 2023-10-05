@@ -25,7 +25,7 @@ gem5: rand_arr $(SOURCES:.c=.gem5)
 	$(CC) $< -o $@ -Iinclude -lm -O0 --static --std=c99
 
 %.papi: %.c
-	$(CC) $< -o $@ -DPAPI -Iinclude -I../papi/install/include -L../papi/install/lib -lm -lpthread -lpapi -O0 --static --std=c99
+	$(CC) $< -o $@ -DPAPI -Iinclude -I../papi/install/include -L../papi/install/lib -lm -lpapi -lpthread -O0 --static --std=c99
 
 %.gem5: %.c
 	$(CC) $< -o $@ -DGEM5 -Iinclude -Llib/m5/arm64 -lm -lm5 -O0 --static --std=c99
