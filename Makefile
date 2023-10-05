@@ -30,6 +30,6 @@ rand_arr:
 	$(CC) $< -o $@ -DGEM5 -Iinclude -Llib/m5/arm64 -lm -lm5 -O0 --static --std=c99
 
 clean:
-	rm -f $(SOURCES:.c=.native) $(SOURCES:.c=.papi) $(SOURCES:.c=.gem5)
+	rm -f $(SOURCES:.c=.native) $(SOURCES:.c=.papi) $(SOURCES:.c=.gem5) */randArr.h
 
 .PHONY: all clean rand_arr
