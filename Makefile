@@ -33,4 +33,13 @@ gem5: rand_arr $(SOURCES:.c=.gem5)
 clean:
 	rm -f $(SOURCES:.c=.native) $(SOURCES:.c=.papi) $(SOURCES:.c=.gem5) */randArr.h
 
+clean-native:
+	rm -f $(SOURCES:.c=.native)
+
+clean-papi:
+	rm -f $(SOURCES:.c=.papi)
+
+clean-gem5:
+	rm -f $(SOURCES:.c=.gem5)
+
 .PHONY: all native papi gem5 rand_arr clean
