@@ -10,15 +10,16 @@ RAND_DIRS=$(shell find . -name "rand_arr_args.txt" -exec dirname {} \;)
 CC=gcc
 
 all: native papi gem5
-native: rand_arr $(SOURCES:.c=.native)
-papi: rand_arr $(SOURCES:.c=.papi)
-gem5: rand_arr $(SOURCES:.c=.gem5)
 
 rand_arr:
 	@for dir in $(RAND_DIRS); do \
-		cd $$dir && python ../rand_c_arr.py $$(cat rand_arr_args.txt); \
+		cd $$dir && if [ ! -f randArr.h ]; then python ../rand_c_arr.py $$(cat rand_arr_args.txt); fi; \
 		cd - > /dev/null; \
 	done
+
+native: rand_arr $(SOURCES:.c=.native)
+papi: rand_arr $(SOURCES:.c=.papi)
+gem5: rand_arr $(SOURCES:.c=.gem5)
 
 %.native: %.c
 	$(CC) $< -o $@ -Iinclude -lm -O0 --static --std=c99
@@ -32,4 +33,4 @@ rand_arr:
 clean:
 	rm -f $(SOURCES:.c=.native) $(SOURCES:.c=.papi) $(SOURCES:.c=.gem5) */randArr.h
 
-.PHONY: all clean rand_arr
+.PHONY: all native papi gem5 rand_arr clean
