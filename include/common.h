@@ -6,13 +6,13 @@
 
 #define ROI_BEGIN() int retval = PAPI_hl_region_begin("ROI"); \
                     if (retval != PAPI_OK) { \
-                        printf("PAPI_hl_region_begin failed\n"); \
+                        printf("PAPI_hl_region_begin failed due to %d.\n", retval); \
                         return -1; \
                     }
 
 #define ROI_END()   retval = PAPI_hl_region_end("ROI"); \
                     if (retval != PAPI_OK) { \
-                        printf("PAPI_hl_region_end failed\n"); \
+                        printf("PAPI_hl_region_end failed due to %d.\n", retval); \
                         return -1; \
                     }
 

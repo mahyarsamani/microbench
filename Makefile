@@ -13,7 +13,7 @@ all: native papi gem5
 
 rand_arr:
 	@for dir in $(RAND_DIRS); do \
-		cd $$dir && if [ ! -f randArr.h ]; then python ../rand_c_arr.py $$(cat rand_arr_args.txt); fi; \
+		cd $$dir && if [ ! -f randArr.h ]; then python3 ../rand_c_arr.py $$(cat rand_arr_args.txt); fi; \
 		cd - > /dev/null; \
 	done
 
