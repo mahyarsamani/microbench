@@ -30,16 +30,25 @@ gem5: rand_arr $(SOURCES:.c=.gem5)
 %.gem5: %.c
 	$(CC) $< -o $@ -DGEM5 -Iinclude -Llib/m5/arm64 -lm -lm5 -O0 --static --std=c99
 
+%.native.opt3: %.c
+	$(CC) $< -o $@ -Iinclude -lm -O3 --static --std=c99
+
+%.papi.opt3: %.c
+	$(CC) $< -o $@ -DPAPI -Iinclude -I../papi/install/include -L../papi/install/lib -lm -lpapi -lpthread -O3 --static --std=c99
+
+%.gem5.opt3: %.c
+	$(CC) $< -o $@ -DGEM5 -Iinclude -Llib/m5/arm64 -lm -lm5 -O3 --static --std=c99
+
 clean:
-	rm -f $(SOURCES:.c=.native) $(SOURCES:.c=.papi) $(SOURCES:.c=.gem5) */randArr.h
+	rm -f $(SOURCES:.c=.native) $(SOURCES:.c=.papi) $(SOURCES:.c=.gem5) $(SOURCES:.c=.native.opt3) $(SOURCES:.c=.papi.opt3) $(SOURCES:.c=.gem5.opt3) */randArr.h
 
 clean-native:
-	rm -f $(SOURCES:.c=.native)
+	rm -f $(SOURCES:.c=.native) $(SOURCES:.c=.native.opt3)
 
 clean-papi:
-	rm -f $(SOURCES:.c=.papi)
+	rm -f $(SOURCES:.c=.papi) $(SOURCES:.c=.papi.opt3)
 
 clean-gem5:
-	rm -f $(SOURCES:.c=.gem5)
+	rm -f $(SOURCES:.c=.gem5) $(SOURCES:.c=.gem5.opt3)
 
 .PHONY: all native papi gem5 rand_arr clean
