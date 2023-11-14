@@ -20,6 +20,9 @@ rand_arr:
 native: rand_arr $(SOURCES:.c=.native)
 papi: rand_arr $(SOURCES:.c=.papi)
 gem5: rand_arr $(SOURCES:.c=.gem5)
+native-opt3: rand_arr $(SOURCES:.c=.native.opt3)
+papi-opt3: rand_arr $(SOURCES:.c=.papi.opt3)
+gem5-opt3: rand_arr $(SOURCES:.c=.gem5.opt3)
 
 %.native: %.c
 	$(CC) $< -o $@ -Iinclude -lm -O0 --static --std=c99
