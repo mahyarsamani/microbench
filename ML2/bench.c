@@ -1,10 +1,10 @@
 #include <stdio.h>
+#include "roi.h"
 #include <stdlib.h>     /* malloc, free, rand */
 
-#include "common.h"
 
 #define ASIZE  65536
-#define ITERS  4 
+#define ITERS  8 
 
 
 typedef struct dude {
@@ -34,9 +34,10 @@ int loop(int zero) {
 
 int main(int argc, char* argv[]) {
    argc&=10000;
-   ROI_BEGIN(); 
+   annotate_init_();
+	roi_begin_(); 
    int t=loop(argc); 
-   ROI_END();
+   roi_end_();
    volatile int a = t;
 }
 

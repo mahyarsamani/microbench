@@ -1,13 +1,13 @@
 #include <stdio.h>
+#include "roi.h"
 #include <stdlib.h>     /* malloc, free, rand */
 
-#include "common.h"
 
-#define AMULT    65536
-#define ASIZE    32
-#define AMASK    (ASIZE-1)
-#define ITERS    (4096*64)
-#define ITER2    2 
+#define AMULT  65536
+#define ASIZE  32
+#define AMASK  (ASIZE-1)
+#define ITERS  (4096*64)
+#define ITER2  4 
 
 
 int arr1[ASIZE*AMULT];
@@ -47,8 +47,9 @@ int loop(int zero) {
 
 int main(int argc, char* argv[]) {
    argc&=10000;
-   ROI_BEGIN();
+   annotate_init_();
+	roi_begin_();
    int t=loop(argc);
-   ROI_END();
+   roi_end_();
    volatile int a = t;
 }

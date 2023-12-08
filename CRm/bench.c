@@ -1,6 +1,6 @@
 #include <stdio.h>
+#include "roi.h"
 #include "randArr.h"
-#include "common.h"
 
 #define ASIZE 65536
 
@@ -74,8 +74,9 @@ void mergeSort(int numbers[], int temp[], int array_size)
  
 int main(int argc, char* argv[]) {
    argc&=10000;
-   ROI_BEGIN(); 
+   annotate_init_();
+	roi_begin_(); 
    mergeSort(randArr,temp,ASIZE);
-   ROI_END();
+   roi_end_();
    volatile int a = temp[argc];
 }

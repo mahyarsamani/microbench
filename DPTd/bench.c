@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include "common.h"
+#include "roi.h"
 #include "math.h"
 
 #define ASIZE   8192
-#define ITERS   128 
+#define ITERS   256 
 
 double arrA[ASIZE];
 double arrB[ASIZE];
@@ -24,8 +24,9 @@ double loop(int zero) {
 
 int main(int argc, char* argv[]) {
    argc&=10000;
-   ROI_BEGIN(); 
+   annotate_init_();
+	roi_begin_(); 
    int t=loop(argc); 
-   ROI_END();
+   roi_end_();
    volatile double a = t;
 }

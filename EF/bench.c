@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "common.h"
+#include "roi.h"
 
-#define ITERS 16384
+#define ITERS 32768
 
 __attribute__((optimize("no-unroll-loops")))
 float loop(int zero) {
@@ -30,8 +30,9 @@ float loop(int zero) {
 
 int main(int argc, char* argv[]) {
    argc&=10000;
-   ROI_BEGIN(); 
+   annotate_init_();
+	roi_begin_(); 
    int t=loop(argc); 
-   ROI_END();
+   roi_end_();
    volatile float a = t;
 }

@@ -1,10 +1,9 @@
 #include <stdio.h>
+#include "roi.h"
 #include "randArr.h"
-#include "common.h"
 
-#define ASIZE 2048
-#define STEP   256
-#define ITERS  1024 
+#define STEP    256
+#define ITERS  2048 
 
 __attribute__ ((noinline))
 int loop(int zero) {
@@ -23,8 +22,9 @@ int loop(int zero) {
 
 int main(int argc, char* argv[]) {
    argc&=10000;
-   ROI_BEGIN();
+   annotate_init_();
+	roi_begin_();
    int t=loop(argc);
-   ROI_END();
+   roi_end_();
    volatile int a = t;
 }

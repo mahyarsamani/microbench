@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include "common.h"
+#include "roi.h"
 
 #define STEP    30
-#define ITERS   1024 
+#define ITERS   2048 
 
 __attribute__ ((noinline))
 int loop(int zero) {
@@ -28,8 +28,9 @@ int loop(int zero) {
 
 int main(int argc, char* argv[]) {
    argc&=10000;
-   ROI_BEGIN(); 
+   annotate_init_();
+	roi_begin_(); 
    int t=loop(argc); 
-   ROI_END();
+   roi_end_();
    volatile int a = t;
 }

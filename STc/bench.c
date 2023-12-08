@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include "common.h"
+#include "roi.h"
 
 #define ASIZE   2048
 #define STEP    1024
-#define ITERS   1024
+#define ITERS   2048
 
 int arr[ASIZE];
 
@@ -21,8 +21,9 @@ int loop(int zero) {
 
 int main(int argc, char* argv[]) {
    argc&=10000;
-   ROI_BEGIN(); 
+   annotate_init_();
+	roi_begin_(); 
    int t=loop(argc); 
-   ROI_END();
+   roi_end_();
    volatile int a = t;
 }

@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include "common.h"
+#include "roi.h"
 
 #define ASIZE  (65536*4)
 #define STEP   1280
-#define ITER   1
+#define ITER   2
 
 
 float arr[ASIZE];
@@ -44,8 +44,9 @@ int main(int argc, char* argv[]) {
    //loop1(argc);
    //loop2(argc);
 
-   ROI_BEGIN(); 
+   annotate_init_();
+	roi_begin_(); 
    float f =loop3(argc);
-   ROI_END();
+   roi_end_();
    volatile float a = f;
 }

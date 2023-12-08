@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include "common.h"
+#include "roi.h"
 
 #define ASIZE   32768
 #define STEP    128
-#define ITERS   16
+#define ITERS   24
 
 float arr1[ASIZE]; //each of 128 KB 
 float arr2[ASIZE];
@@ -38,8 +38,9 @@ float loop3(int zero) {
 
 int main(int argc, char* argv[]) {
    argc&=10000;
-   ROI_BEGIN(); 
+   annotate_init_();
+	roi_begin_(); 
    float f =loop3(argc);
-   ROI_END();
+   roi_end_();
    volatile float a = f;
 }
