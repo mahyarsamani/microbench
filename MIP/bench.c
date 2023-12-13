@@ -1,14 +1,13 @@
-#include <stdio.h>
 #include "roi.h"
+#include <stdio.h>
 
-#define ASIZE    2048
-#define STEP     128
-#define ITERS    600
+#define ASIZE 2048
+#define STEP 128
+#define ITERS 600
 
-__attribute__ ((noinline))
-int loop(int zero) {
-  int t = zero,i,iter;
-  for(iter=0; iter < ITERS; ++iter) {
+__attribute__((noinline)) int loop(int zero) {
+  int t = zero, i, iter;
+  for (iter = 0; iter < ITERS; ++iter) {
     t += 1;
     t *= 2;
     t -= 1;
@@ -4408,7 +4407,8 @@ int loop(int zero) {
     t ^= 0x14022;
     t %= 0xFFFFFF3;
     t += 6;
-    t *= 10;    t += 1;
+    t *= 10;
+    t += 1;
     t *= 2;
     t -= 1;
     t &= 0xFFF00FFF;
@@ -6607,7 +6607,8 @@ int loop(int zero) {
     t ^= 0x14022;
     t %= 0xFFFFFF3;
     t += 6;
-    t *= 10;    t += 1;
+    t *= 10;
+    t += 1;
     t *= 2;
     t -= 1;
     t &= 0xFFF00FFF;
@@ -8806,7 +8807,8 @@ int loop(int zero) {
     t ^= 0x14022;
     t %= 0xFFFFFF3;
     t += 6;
-    t *= 10;    t += 1;
+    t *= 10;
+    t += 1;
     t *= 2;
     t -= 1;
     t &= 0xFFF00FFF;
@@ -11010,11 +11012,11 @@ int loop(int zero) {
   return t;
 }
 
-int main(int argc, char* argv[]) {
-   argc&=10000;
-   annotate_init_();
-	roi_begin_(); 
-   int t=loop(argc); 
-   roi_end_();
-   volatile int a = t;
+int main(int argc, char *argv[]) {
+  argc &= 10000;
+  annotate_init_();
+  roi_begin_();
+  int t = loop(argc);
+  roi_end_();
+  volatile int a = t;
 }

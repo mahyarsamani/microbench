@@ -1,29 +1,58 @@
-#include <stdio.h>
 #include "roi.h"
+#include <stdio.h>
 
-#define STEP    10
-#define ITERS   12800
-#define ITER2   16
+#define STEP 10
+#define ITERS 12800
+#define ITER2 16
 
-__attribute__ ((noinline))
-int loop(int zero) {
+__attribute__((noinline)) int loop(int zero) {
   int t;
-  for (int k = 0 ; k < ITER2; k++) {
+  for (int k = 0; k < ITER2; k++) {
     t = 0;
-    int i,iter;
-    for(iter=0; iter < ITERS+zero; ++iter) {
-      for(i=zero; i < STEP; ++i) {
-        switch(i) {
-          case 0: t+=1; t|=2; break;
-          case 1: t+=4; t|=4; break;
-          case 2: t-=4; t|=3; break;
-          case 3: t+=2; t|=4; break;
-          case 4: t-=3; t|=5; break;
-          case 5: t+=2; t|=3; break;
-          case 6: t-=3; t|=2; break;
-          case 7: t-=1; t|=2; break;
-          case 8: t-=2; t|=3; break;
-          case 9: t-=1; t|=1; break;
+    int i, iter;
+    for (iter = 0; iter < ITERS + zero; ++iter) {
+      for (i = zero; i < STEP; ++i) {
+        switch (i) {
+        case 0:
+          t += 1;
+          t |= 2;
+          break;
+        case 1:
+          t += 4;
+          t |= 4;
+          break;
+        case 2:
+          t -= 4;
+          t |= 3;
+          break;
+        case 3:
+          t += 2;
+          t |= 4;
+          break;
+        case 4:
+          t -= 3;
+          t |= 5;
+          break;
+        case 5:
+          t += 2;
+          t |= 3;
+          break;
+        case 6:
+          t -= 3;
+          t |= 2;
+          break;
+        case 7:
+          t -= 1;
+          t |= 2;
+          break;
+        case 8:
+          t -= 2;
+          t |= 3;
+          break;
+        case 9:
+          t -= 1;
+          t |= 1;
+          break;
         }
       }
     }
@@ -31,11 +60,11 @@ int loop(int zero) {
   return t;
 }
 
-int main(int argc, char* argv[]) {
-   argc&=10000;
-   annotate_init_();
-	roi_begin_(); 
-   int t=loop(argc); 
-   roi_end_();
-   volatile int a = t;
+int main(int argc, char *argv[]) {
+  argc &= 10000;
+  annotate_init_();
+  roi_begin_();
+  int t = loop(argc);
+  roi_end_();
+  volatile int a = t;
 }
