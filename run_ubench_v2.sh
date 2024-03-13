@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export LD_LIBRARY_PATH=${PWD}/../roi/papi/install/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$(realpath "${PWD}/../roi/papi/install/lib")${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 benchmarks=(CCh ED1 CCa EM5 EM1 EI DPTd ML2_st CCh_st DPT MM DP1d CRf STL2
         MIM2 CCe ML2 ML2_BW_ldst MI MC CRd CCl MIM M_Dyn MM_st ML2_BW_st DP1f
