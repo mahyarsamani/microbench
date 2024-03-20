@@ -1,1 +1,6 @@
 make.config
+bench.gem5
+bench.native
+bench.papi
+randArr.h 
+
