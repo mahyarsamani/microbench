@@ -7,7 +7,7 @@ RAND_DIRS=$(shell find . -name "rand_arr_args.txt" -exec dirname {} \;)
 
 CC=gcc
 OPT=-O2
-ROI_DIR=$(PWD)/../roi
+ANNOTATE_DIR=$(PWD)/../annotate
 
 all: native papi gem5
 
@@ -22,13 +22,13 @@ papi: rand_arr $(SOURCES:.c=.papi)
 gem5: rand_arr $(SOURCES:.c=.gem5)
 
 %.native: %.c
-	$(CC) -o $@ $< --static --std=c99 $(OPT) -I$(ROI_DIR)/include -L$(ROI_DIR)/lib -lm -lroi.native
+	$(CC) -o $@ $< --static --std=c99 $(OPT) -I$(ANNOTATE_DIR)/include -L$(ANNOTATE_DIR)/lib -lm -lannotate.native
 
 %.papi: %.c
-	$(CC) -o $@ $< --static --std=c99 $(OPT) -I$(ROI_DIR)/include -I$(ROI_DIR)/papi/install/include -L$(ROI_DIR)/lib -L$(ROI_DIR)/papi/install/lib -lm -lroi.papi -lpapi -lpthread
+	$(CC) -o $@ $< --static --std=c99 $(OPT) -I$(ANNOTATE_DIR)/include -I$(ANNOTATE_DIR)/papi/install/include -L$(ANNOTATE_DIR)/lib -L$(ANNOTATE_DIR)/papi/install/lib -lm -lannotate.papi -lpapi -lpthread
 
 %.gem5: %.c
-	$(CC) -o $@ $< --static --std=c99 $(OPT) -I$(ROI_DIR)/include -I$(ROI_DIR)/gem5/include -L$(ROI_DIR)/lib -L$(ROI_DIR)/gem5/lib -lm -lroi.gem5se -lm5
+	$(CC) -o $@ $< --static --std=c99 $(OPT) -I$(ANNOTATE_DIR)/include -I$(ANNOTATE_DIR)/gem5/include -L$(ANNOTATE_DIR)/lib -L$(ANNOTATE_DIR)/gem5/lib -lm -lannotate.gem5se -lm5
 
 clean:
 	rm -f $(SOURCES:.c=.native) $(SOURCES:.c=.papi) $(SOURCES:.c=.gem5)  */randArr.h
